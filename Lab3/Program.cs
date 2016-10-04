@@ -13,39 +13,43 @@ namespace Lab3
         {
             Console.WriteLine("Enter your string:");
             string source = Console.ReadLine();
-            Stack parenthesis = new Stack();
+            Stack brackets = new Stack();
             foreach(char symbol in source)
             {
                 if(symbol=='(')
                 {
-                    parenthesis.Push(')');
+                    brackets.Push(')');
                 }
                 else if(symbol=='[')
                 {
-                    parenthesis.Push(']');
+                    brackets.Push(']');
                 }
                 else if(symbol=='{')
                 {
-                    parenthesis.Push('}');
+                    brackets.Push('}');
                 }
-                else if(parenthesis.Peek().Equals(symbol))
+                else if(symbol=='<')
                 {
-                    parenthesis.Pop();
+                    brackets.Push('>');
+                }
+                else if(brackets.Peek().Equals(symbol))
+                {
+                    brackets.Pop();
                 }
             }
-            if(parenthesis.Count==0)
+            if(brackets.Count==0)
             {
-                Console.WriteLine("All is fine!");
+                Console.WriteLine("All is fine! Each bracket has found its match!");
             }
             else
             {
-                Console.WriteLine("Something is wrong!");
+                Console.WriteLine("Something is wrong! 1 or more brackets are missing their match.");
             }
             Console.ReadLine();
         }
     }
 }
-//{[]([{}])}
+//{[]([{}])}<>
 //{[([{
 //]}])}
 //{     -
@@ -58,3 +62,5 @@ namespace Lab3
 //{(    []{}[]
 //{     []{}[]()
 //-     []{}[](){}
+//<    []{}[](){}
+//-     []{}[](){}<>
