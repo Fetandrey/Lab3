@@ -14,6 +14,7 @@ namespace Lab3
             Console.WriteLine("Enter your string:");
             string source = Console.ReadLine();
             Stack brackets = new Stack();
+            bool unacceptable = false;
             foreach(char symbol in source)
             {
                 if(symbol=='(')
@@ -36,8 +37,12 @@ namespace Lab3
                 {
                     brackets.Pop();
                 }
+                else if((symbol=='}')||(symbol==']')||(symbol==')')||(symbol=='>'))
+                {
+                    unacceptable = true;
+                }
             }
-            if(brackets.Count==0)
+            if(!unacceptable&&brackets.Count==0)
             {
                 Console.WriteLine("All is fine! Each bracket has found its match!");
             }
