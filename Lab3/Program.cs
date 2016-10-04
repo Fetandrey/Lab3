@@ -33,13 +33,17 @@ namespace Lab3
                 {
                     brackets.Push('>');
                 }
-                else if(brackets.Peek().Equals(symbol))
+                else if(brackets.Count!=0)
                 {
-                    brackets.Pop();
+                    if(brackets.Peek().Equals(symbol))
+                    {
+                        brackets.Pop();
+                    }
                 }
                 else if((symbol=='}')||(symbol==']')||(symbol==')')||(symbol=='>'))
                 {
                     unacceptable = true;
+                    break;
                 }
             }
             if(!unacceptable&&brackets.Count==0)
